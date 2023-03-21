@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilos.css">
+        <script type="text/JavaScript" src="javaScript/index.js" defer></script>
+        <script type="text/JavaScript" src="javaScript/calculo.js"></script>
+        <script type="text/JavaScript" src="javaScript/display.js"></script>
+        <title>Calculadora Basica</title>
+    </head>
+    <body>
+        <div class="contenedor">
+            <div class="calculador">
+                <div id="display">
+                    <div id="screen"></div>
+                </div>
+                <button class="col-2 borrar" onclick="display.borrarTodo()">C</button>
+                <button class="operador" onclick="display.borrarElemento()">&larr;</button>
+                <button class="operador" value="/">/</button>
+                <button class="numero">7</button>
+                <button class="numero">8</button>
+                <button class="numero">9</button>
+                <button class="operador" value="x">x</button>
+                <button class="numero">4</button>
+                <button class="numero">5</button>
+                <button class="numero">6</button>
+                <button class="operador" value="-">-</button>
+                <button class="numero">1</button>
+                <button class="numero">2</button>
+                <button class="numero">3</button>
+                <button class="operador" value="+">+</button>  
+                <button class="numero">0</button>
+                <button class="numero">.</button>
+                <button class="col-2 operador" value="=">=</button>
+                
+            </div>
+        </div>
+    </body>
+</html>
