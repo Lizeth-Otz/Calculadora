@@ -1,8 +1,13 @@
 class Display{
     constructor(pantalla){
         this.pantalla = pantalla;
-        this.screen = ' ';
+
         this.calcular = new Calculos(); 
+        this.tipoOperacion = undefined;
+        this.screen = ' ';
+        this.valorAnterior = ' ';
+        this.valorAnterior = ' ';
+        this.signos = {sumar: "+", restar: "-", dividir: "/", multiplicar: "x"}
         
     }
     borrarElemento(){
@@ -11,13 +16,21 @@ class Display{
         //(num1: la posición del arreglo, num2: si el número es positivo lo quita de izq a der 
         //y si el número es negativo lo quita de der a izq)*/
         this.screen = this.screen.toString().slice(0, -1);
-        //console.log(this.screen);
+
         this.imprimirValor();
     }
     borrarTodo(){
         //replace(): método que devuelve una nueva cadena con los valores reemplazados 
         this.screen = this.screen.replace(this.screen, "");
-        //console.log(this.screen);
+        this.tipoOperacion = undefined;
+        this.imprimirValor();
+    }
+    tipoOperador(tipo){ 
+        this.tipoOperacion !== "igual" && this.calculoTotal();
+        this.tipoOperacion = tipo;
+        this.valorAnterior = this.screen || this.valorAnterior;
+        this.screen = '';
+        //console.log(this.tipoOperacion)
         this.imprimirValor();
     }
     agregarNumeros(numeros){
@@ -30,7 +43,17 @@ class Display{
         //console.log(this.screen);
         this.imprimirValor();
     }
-    imprimirValor(){
-        this.pantalla.textContent = this.screen;
+    imprimirValor(){ 
+        this.pantalla.textContent = `${this.valorAnterior} ${this.signos[this.tipoOperacion] || ""} ${this.screen}`;
+    }
+
+    calculoTotal(){
+        const valorAnt = parseFloat(this.valorAnterior);
+        const valorAct = parseInt(this.screen);
+        if (isNaN(valorAnt) || isNaN(valorAct)) {
+            return;
+        }
+         this.screen = this.calcular[this.tipoOperacion](valorAnt, valorAct);
+
     }
 }

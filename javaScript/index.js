@@ -8,6 +8,10 @@ bnNumeros.forEach(boton => {
     boton.addEventListener("click", () => display.agregarNumeros(boton.innerHTML));
 });
 
+bnOperadores.forEach(boton => {
+    boton.addEventListener("click", () => display.tipoOperador(boton.value));
+    
+});
 /*
 let calcular = new Calculos();
 console.log(calcular.sumar(2,3));
