@@ -20,8 +20,8 @@ class Display{
         this.imprimirValor();
     }
     borrarTodo(){
-        //replace(): método que devuelve una nueva cadena con los valores reemplazados 
-        this.screen = this.screen.replace(this.screen, "");
+        this.screen = ' ';
+        this.valorAnterior = ' ';
         this.tipoOperacion = undefined;
         this.imprimirValor();
     }
@@ -30,7 +30,6 @@ class Display{
         this.tipoOperacion = tipo;
         this.valorAnterior = this.screen || this.valorAnterior;
         this.screen = '';
-        //console.log(this.tipoOperacion)
         this.imprimirValor();
     }
     agregarNumeros(numeros){
@@ -40,7 +39,6 @@ class Display{
         }
         //toString(): devuelve un número como una cadena
         this.screen = this.screen.toString() + numeros.toString();
-        //console.log(this.screen);
         this.imprimirValor();
     }
     imprimirValor(){ 
@@ -49,11 +47,16 @@ class Display{
 
     calculoTotal(){
         const valorAnt = parseFloat(this.valorAnterior);
-        const valorAct = parseInt(this.screen);
+        const valorAct = parseFloat(this.screen);
         if (isNaN(valorAnt) || isNaN(valorAct)) {
             return;
         }
-         this.screen = this.calcular[this.tipoOperacion](valorAnt, valorAct);
+        if (this.tipoOperacion === "dividir") {
+            this.screen = this.calcular[this.tipoOperacion](valorAnt, valorAct).toFixed(6);
+        } else {
+            this.screen = this.calcular[this.tipoOperacion](valorAnt, valorAct);
+        }
+        
 
     }
 }
